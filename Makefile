@@ -1,11 +1,6 @@
 # Go application name
 APP_NAME=fetch-demo
 
-# Go build settings
-GO=go
-GOARCH=amd64
-GOOS=linux
-
 # Output directories
 BUILD_DIR=./build
 WINDOWS_BUILD=$(BUILD_DIR)/$(APP_NAME)-windows-amd64.exe
@@ -17,18 +12,15 @@ all: build-linux build-mac build-windows
 
 # Build for Windows
 build-windows:
-	$(GO) env -w GOOS=windows GOARCH=amd64
-	$(GO) build -o $(WINDOWS_BUILD)
+	GOOS=windows GOARCH=amd64 go build -o $(WINDOWS_BUILD)
 
 # Build for macOS
 build-mac:
-	$(GO) env -w GOOS=darwin GOARCH=amd64
-	$(GO) build -o $(MAC_BUILD)
+	GOOS=darwin GOARCH=amd64 go build -o $(MAC_BUILD)
 
 # Build for Linux
 build-linux:
-	$(GO) env -w GOOS=linux GOARCH=amd64
-	$(GO) build -o $(LINUX_BUILD)
+	GOOS=linux GOARCH=amd64 go build -o $(LINUX_BUILD)
 
 # Clean the build directory
 clean:
